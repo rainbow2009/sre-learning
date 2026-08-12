@@ -14,8 +14,8 @@ provider "aws" {
 }
 
 variable "environment" {
-  type    = string
-  default = "uat"
+type=string
+    default="uat"
 }
 
 locals {
