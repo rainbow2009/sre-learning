@@ -1,0 +1,46 @@
+name: Terraform Check
+
+# Когда запускается
+on:
+  push:
+    branches: [main]
+    paths: ['terraform/**']       # только при изменениях в terraform/
+  pull_request:
+    branches: [main]
+    paths: ['terraform/**']
+  workflow_dispatch:               # ручной запуск из UI
+
+# Что делает
+jobs:
+  check:
+    name: Validate Terraform
+    runs-on: ubuntu-latest         # бесплатный runner от GitHub
+
+    defaults:
+      run:
+        working-directory: terraform    # все команды из папки terraform/
+
+    steps:
+      # 1. Забрать код
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Установить Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.15.8"    # твоя версия
+
+      # 3. Проверка форматирования
+      - name: Terraform fmt
+        run: terraform fmt -check -diff
+        # -check: не исправлять, только проверить
+        # -diff: показать что не так
+
+      # 4. Инициализация (без backend — только проверка)
+      - name: Terraform init
+        run: terraform init -backend=false
+
+      # 5. Валидация
+      - name: Terraform validate
+        run: terraform validate
