@@ -31,7 +31,8 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::081073840758:role/github-actions-sre-learning
           aws-region: ${{ env.AWS_REGION }}
-
+          audience: sts.amazonaws.com
+          
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
