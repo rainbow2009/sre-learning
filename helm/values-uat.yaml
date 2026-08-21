@@ -1,11 +1,17 @@
-replicaCount: 3
+replicaCount: 1
 
 image:
-  repository: 081073840758.dkr.ecr.us-east-1.amazonaws.com/sre-learning/payment-service
-  tag: "839e6e7e09c449bc7f748a3ba7785616dd7857f1"
-  pullPolicy: Always
+  repository: nginx
+  tag: alpine
+  pullPolicy: IfNotPresent
 
 config:
   APP_PORT: "8080"
   LOG_LEVEL: "warn"
   KAFKA_BROKER: "kafka.uat.svc:9092"
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPU: 50
