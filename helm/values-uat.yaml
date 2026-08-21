@@ -1,8 +1,9 @@
 replicaCount: 3
 
 image:
-  repository: nginx
+  repository: 081073840758.dkr.ecr.us-east-1.amazonaws.com/sre-learning/payment-service
   tag: latest
+  pullPolicy: Always
 
 config:
   APP_PORT: "8080"
