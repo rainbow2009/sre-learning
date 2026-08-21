@@ -1,4 +1,9 @@
 replicaCount: 3
+
+image:
+  repository: nginx
+  tag: latest
+
 config:
   APP_PORT: "8080"
   LOG_LEVEL: "warn"
