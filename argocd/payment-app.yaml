@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: payment-service
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/rainbow2009/sre-learning.git
+    targetRevision: main
+    path: helm/payment-service        # путь к чарту в репо
+
+    helm:
+      valueFiles:
+        - ../values-uat.yaml          # путь к values относительно чарта
+
+  destination:
+    server: https://kubernetes.default.svc    # текущий кластер
+    namespace: apps
+
+  syncPolicy:
+    automated:                        # автоматический sync при изменениях в Git
+      prune: true                     # удалять ресурсы, которых нет в Git
+      selfHeal: true                  # возвращать ручные изменения к состоянию в Git
+    syncOptions:
+      - CreateNamespace=true          # создать namespace если не существует
