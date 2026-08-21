@@ -2,7 +2,7 @@ replicaCount: 3
 
 image:
   repository: 081073840758.dkr.ecr.us-east-1.amazonaws.com/sre-learning/payment-service
-  tag: latest
+  tag: "839e6e7e09c449bc7f748a3ba7785616dd7857f1"
   pullPolicy: Always
 
 config:
