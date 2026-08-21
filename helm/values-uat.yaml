@@ -1,0 +1,6 @@
+replicaCount: 1
+environment: uat
+config:
+  APP_PORT: "8080"
+  LOG_LEVEL: "debug"
+  KAFKA_BROKER: "kafka.uat.svc:9092"
