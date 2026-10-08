@@ -12,7 +12,7 @@ env:
 
 permissions:
   id-token: write
-  contents: write       # нужно для git push обратно
+  contents: write      
 
 jobs:
   build:
@@ -58,7 +58,7 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
-      # ═══ НОВЫЙ ШАГ — замыкает CI → CD ═══
+    
       - name: Update image tag in Helm values
         env:
           IMAGE_TAG: ${{ github.sha }}
