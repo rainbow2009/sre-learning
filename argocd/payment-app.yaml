@@ -16,12 +16,12 @@ spec:
         - ../values-uat.yaml          # путь к values относительно чарта
 
   destination:
-    server: https://kubernetes.default.svc    # текущий кластер
+    server: https://kubernetes.default.svc    
     namespace: apps
 
   syncPolicy:
-    automated:                        # автоматический sync при изменениях в Git
-      prune: true                     # удалять ресурсы, которых нет в Git
-      selfHeal: true                  # возвращать ручные изменения к состоянию в Git
+    automated:                       
+      prune: true                    
+      selfHeal: true                 
     syncOptions:
-      - CreateNamespace=true          # создать namespace если не существует
+      - CreateNamespace=true        
